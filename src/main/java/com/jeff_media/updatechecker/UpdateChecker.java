@@ -18,6 +18,7 @@
 
 package com.jeff_media.updatechecker;
 
+import cn.handyplus.lib.adapter.HandySchedulerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
@@ -320,7 +321,7 @@ public class UpdateChecker {
             userAgentString = UserAgentBuilder.getDefaultUserAgent().build();
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        HandySchedulerUtil.runTaskAsynchronously(() -> {
 
             UpdateCheckEvent updateCheckEvent;
 

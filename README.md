@@ -1,4 +1,10 @@
-# SpigotUpdateChecker
+# SpigotUpdateChecker Folia Support
+## You need to add this to let this fork work
+```java
+public void onEnable() {
+    HandySchedulerUtil.init(this);
+}
+```
 <!--- Buttons start -->
 <p align="center">
   <a href="https://www.spigotmc.org/threads/spigotupdatechecker-powerful-update-checker-with-only-one-line-of-code.500010/">
