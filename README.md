@@ -117,6 +117,30 @@ Please note that you will also have to shade and relocate the UpdateChecker into
 </build>
 ```
 
+## Gradle (Kotlin)
+```kotlin
+plugins {
+    id("com.github.johnrengelman.shadow") version "x.x.x"  // Used for shading
+}
+
+repositories {
+    maven(url = "https://repo.jeff-media.com/public/")
+}
+
+dependencies {
+    implementation("com.jeff_media:SpigotUpdateChecker:3.0.3")
+}
+
+tasks.named<ShadowJar>("shadowJar") {
+    dependencies {
+        relocate("com.jeff_media", "your.package.lib") {
+            include(dependency("com.jeff_media:"))
+        }
+    }
+}
+```
+
+
 **Failing to relocate the package will make the UpdateChecker throw an exception, so RELOCATE IT!**
 
 ## Example
@@ -126,7 +150,7 @@ To get a working UpdateChecker, this is already enough:
 ```java
 public class MyPlugin extends JavaPlugin {
     // To get the Resource ID, look at the number at the end of the URL of your plugin's SpigotMC page
-    private static final int SPIGOT_RESOURCE_ID = 59773;
+    private static final String SPIGOT_RESOURCE_ID = "59773";
 
     @Override
     public void onEnable() {
@@ -146,7 +170,7 @@ Of course, there are many more options you can use. For example:
 import com.jeff_media.updatechecker.UpdateCheckSource;
 
 public class MyPlugin extends JavaPlugin {
-    private static final int SPIGOT_RESOURCE_ID = 59773;
+    private static final String SPIGOT_RESOURCE_ID = "59773";
 
     @Override
     public void onEnable() {
